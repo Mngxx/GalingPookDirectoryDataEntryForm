@@ -1,0 +1,51 @@
+<% if(success && success.length) { %> 
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= success %> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %> 
+    
+    <% if(error && error.length) { %> 
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= error %> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% } %> 
+<% if(duplicate && duplicate.length){ %>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Duplicated Entry</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <%= duplicate %> 
+            </div>
+            <div class="modal-footer">
+                <form action="/entryform" method="POST">
+                    <input class="form-control" type="hidden" value="<%=data.ln%>" name="ln">
+                    <input class="form-control" type="hidden" value="<%=data.fn%>" name="fn">
+                    <input class="form-control" type="hidden" value="<%=data.mi%>" name="mi">
+                    <input class="form-control" type="hidden" value="<%=data.org%>" name="org">
+                    <input class="form-control" type="hidden" value="<%=data.email%>" name="email">
+                    <input class="form-control" type="hidden" value="<%=data.cn%>" name="cn">
+                    <input class="form-control" type="hidden" value="<%=data.categ%>" name="categ">
+                    <input class="form-control" type="hidden" value="<%=data.enc%>" name="enc">
+                    <input class="form-control" type="hidden" value="<%=consent%>" name="consent">
+                    <input class="form-control" type="hidden" value="overwrite" name="savemethod">
+                    <input class="form-control" type="hidden" value="<%=Rownumber%>" name="Rownumber">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Overwrite Existing Entry</button>
+                </form>
+              <button type="button" class="btn btn-secondary">Close & Create New Entry</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script>
+        $(document).ready(function () {
+            $('#staticBackdrop').modal('show');
+        });
+      </script>
+<% } %>  

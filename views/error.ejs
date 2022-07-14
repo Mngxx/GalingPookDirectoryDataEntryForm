@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') %>
+    <main>
+        <div class="col-8 offset-2 mt-5" data-aos="zoom-in">
+            <div class="alert d-flex flex-column alert-danger p-3" role="alert">
+                <h4 class="alert-heading">
+                    <%= err.message %>
+                </h4>
+                <% if(process.env.NODE_ENV !=="production" ){ %>
+                    <p>
+                        <%= err.stack %>
+                    </p>
+                    <% } %>
+            </div>
+        </div>
+    </main>

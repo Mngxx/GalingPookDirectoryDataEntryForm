@@ -1,0 +1,120 @@
+<% layout('layouts/boilerplate') %>
+    <main class="container mt-5" data-aos="fade-left">
+        <div class="card shadow">
+            <h1 class="card-header fs-1 mb-0 bg-primary text-wrap badge d-flex justify-content-center">Galing Pook
+                Directory Data
+                Entry Form
+            </h1>
+            <div class="card-body p-4">
+                <form action="/entryform?_method=PUT" method="POST" class="validated-form" novalidate>
+                    <div class="input-group mt-3 mb-5">
+                        <span class="input-group-text bg-primary text-white">ID</span>
+                        <input type="text" class="form-control" id="search_id" name="id"
+                            aria-label="Recipient's username" aria-describedby="button-addon2" value="<%=data.id%>"
+                            required>
+                        <button class="btn btn-secondary" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </form>
+                <form action="/entryform" method="POST" class="validated-form" novalidate>
+                    <div class="input-group mt-2 mb-4">
+                        <span class="input-group-text bg-primary text-white">L.N, F.N, M.I</span>
+                        <input type="text" id="last_name" placeholder="Last Name, Suffix" aria-label="Last name"
+                            name="ln" class="form-control" value="<%=data.ln%>" required>
+                        <input type="text" placeholder="First Name" aria-label="First name" name="fn"
+                            class="form-control" value="<%=data.fn%>" required>
+                        <input type="text" placeholder="Middle Initial" aria-label="Middle name" name="mi"
+                            class="form-control" value="<%=data.mi%>" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group mb-4">
+                                <span class="input-group-text bg-primary text-white" id="orglabel">Organization</span>
+                                <input type="text" class="form-control" aria-label="Organization" name="org"
+                                    aria-describedby="orglabel" value="<%=data.org%>" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group mb-4">
+                                <span class="input-group-text bg-primary text-white" id="poslabel">Position</span>
+                                <input type="text" class="form-control" aria-label="Position" name="pos"
+                                    aria-describedby="poslabel" value="<%=data.pos%>" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group mb-4">
+                                <span class="input-group-text bg-primary text-white" id="emailabel">Email Address</span>
+                                <input type="text" class="form-control" aria-label="Email Address" name="email"
+                                    aria-describedby="emailabel" value="<%=data.email%>" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group mb-4">
+                                <span class="input-group-text bg-primary text-white" id="cnlabel">Contact Number</span>
+                                <input type="text" class="form-control" aria-label="Contact Number" name="cn"
+                                    aria-describedby="cnlabel" value="<%=data.cn%>" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-primary text-white" id="categlabel">Category</span>
+                                <select class="form-select" aria-label="Category" name="categ"
+                                    aria-describedby="categlabel" required>
+                                    <option value="" <%=data.enc=="" ? "selected" : "" %> disabled>Select a Category
+                                    </option>
+                                    <% for(let c of categ_list){ %>
+                                        <option <%=c[0]==data.categ ? "selected" : "" %> value="<%=c[0]%>"><%=c[0]%>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group mb-4">
+                                <span class="input-group-text bg-primary text-white" id="enclabel">Encoder</span>
+                                <select class="form-select" aria-label="Encoder" aria-describedby="enclabel" name="enc"
+                                    required>
+                                    <option value="" <%=data.enc=="" ? "selected" : "" %> disabled>Select an Encoder
+                                    </option>
+                                    <% for(let e of enc_list){ %>
+                                        <option <%=e[0]==data.enc ? "selected" : "" %> value="<%=e[0]%>"><%=e[0]%>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-check d-flex justify-content-center mb-5">
+                        <input class="form-check-input me-2" type="checkbox" value="Yes" data-valuetwo="No"
+                            id="flexCheckChecked" name="consent" checked>
+                        <label class="form-check-label" for="flexCheckChecked">Consent to Mailing List</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <input class="form-control" type="hidden" value="save" name="savemethod">
+                            <button type="submit" class="btn btn-success px-5 btn-lg">Save</button>
+                </form>
+            </div>
+            </form>
+            <div class="col-4 text-center">
+                <form action="/entryform?_method=DELETE" method="POST">
+                    <input class="form-control" type="hidden" id="del_id" name="id">
+                    <button onclick="getId()" type="submit" class="btn btn-danger px-5 btn-lg">Delete</button>
+                </form>
+            </div>
+            <div class="col-4 text-center">
+                <button onclick="clearFields()" type="button" class="btn btn-warning px-5 btn-lg">Clear</button>
+            </div>
+            <div class="mt-4 col-12 text-center">
+                <form action="/logout" method="POST">
+                    <button type="submit" class="btn btn-outline-primary mt-5 px-5 btn-lg">Logout</button>
+                </form>
+            </div>
+        </div>
+
+        </div>
+        </div>
+    </main>
