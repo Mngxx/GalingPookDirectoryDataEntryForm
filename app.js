@@ -11,8 +11,6 @@ const session = require('express-session');
 const ExpressError = require('./utils/ExpressError');
 const { google } = require("googleapis");
 const spreadsheetId = process.env.SPREADSHEET_ID;
-const getuser = String(process.env.USERNAME);
-const getpass = String(process.env.PASSWORD);
 
 const auth = new google.auth.GoogleAuth({
     keyFile: "credentials.json",
