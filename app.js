@@ -123,7 +123,7 @@ app.post('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 })
-app.get('/entryform',  catchAsync(async (req, res, next) => {
+app.get('/entryform', requireLogin, catchAsync(async (req, res, next) => {
     const { enc_list, categ_list } = await getResource_list();
     categ_list.splice(0, 1); enc_list.splice(0, 1);
     var data = {
