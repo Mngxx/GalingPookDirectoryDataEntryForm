@@ -147,6 +147,7 @@ app.put('/entryform', requireLogin, catchAsync(async (req, res, next) => {
     for (let i = 0; i < Rowdata.length; i++) {
         if (id == Rowdata[i][0]) {
             const { enc_list, categ_list } = await getResource_list();
+            categ_list.splice(0, 1); enc_list.splice(0, 1);
             var data = {
                 id: Rowdata[i][0],
                 ln: Rowdata[i][1],
@@ -185,6 +186,7 @@ app.post('/entryform', requireLogin, catchAsync(async (req, res, next) => {
             if (unique_id == Rowdata[i][0]) {
                 Rownumber = i + 2;
                 const { enc_list, categ_list } = await getResource_list();
+                categ_list.splice(0, 1); enc_list.splice(0, 1);
                 var data = {
                     id: unique_id,
                     ln: ln,
